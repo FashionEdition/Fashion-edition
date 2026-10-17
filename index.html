@@ -854,6 +854,354 @@
     letter-spacing: 1px;
   }
 
+  /* ===== CHAT WIDGET ===== */
+  .chat-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .chat-tooltip {
+    background: var(--ivory);
+    color: var(--espresso);
+    padding: 14px 20px;
+    border-radius: 14px 14px 4px 14px;
+    box-shadow: 0 12px 40px rgba(42, 31, 24, 0.25);
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 240px;
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    font-weight: 400;
+  }
+
+  .chat-tooltip.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .chat-tooltip strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--espresso);
+  }
+
+  .chat-tooltip-close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--warm-gray);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 6px;
+    line-height: 1;
+  }
+
+  .chat-toggle {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--mocha);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ivory);
+    box-shadow: 0 10px 30px rgba(42, 31, 24, 0.35);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+
+  .chat-toggle:hover {
+    background: var(--gold);
+    color: var(--espresso);
+    transform: scale(1.08);
+    box-shadow: 0 14px 40px rgba(184, 149, 106, 0.4);
+  }
+
+  .chat-toggle svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.4s;
+  }
+
+  .chat-toggle.open svg {
+    transform: rotate(90deg) scale(0.9);
+  }
+
+  .chat-toggle-pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--amber);
+    opacity: 0;
+    animation: chatPulse 2.5s ease-out infinite;
+  }
+
+  @keyframes chatPulse {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .chat-window {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    height: 560px;
+    max-height: calc(100vh - 140px);
+    background: var(--ivory);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(42, 31, 24, 0.3);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .chat-window.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .chat-header {
+    background: var(--espresso);
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+
+  .chat-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--amber);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--espresso);
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .chat-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: #6ec47a;
+    border: 2px solid var(--espresso);
+    border-radius: 50%;
+  }
+
+  .chat-header-info {
+    flex: 1;
+    color: var(--ivory);
+  }
+
+  .chat-header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .chat-header-status {
+    font-size: 11px;
+    color: var(--warm-gray);
+    letter-spacing: 0.5px;
+  }
+
+  .chat-close {
+    background: none;
+    border: none;
+    color: var(--warm-gray);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+  }
+
+  .chat-close:hover { color: var(--ivory); }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--cream);
+  }
+
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
+
+  .chat-msg {
+    max-width: 82%;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 16px;
+    animation: msgIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-msg.bot {
+    background: var(--ivory);
+    color: var(--mocha);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    box-shadow: 0 2px 8px rgba(42, 31, 24, 0.06);
+  }
+
+  .chat-msg.user {
+    background: var(--mocha);
+    color: var(--ivory);
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+
+  .chat-quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 20px 14px;
+    background: var(--cream);
+  }
+
+  .chat-quick-btn {
+    background: var(--ivory);
+    border: 1px solid rgba(184, 149, 106, 0.3);
+    color: var(--mocha);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.3px;
+  }
+
+  .chat-quick-btn:hover {
+    background: var(--mocha);
+    color: var(--ivory);
+    border-color: var(--mocha);
+  }
+
+  .chat-input-area {
+    padding: 14px 16px;
+    background: var(--ivory);
+    border-top: 1px solid rgba(61, 46, 36, 0.08);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .chat-input {
+    flex: 1;
+    background: var(--cream);
+    border: 1px solid rgba(61, 46, 36, 0.08);
+    border-radius: 24px;
+    padding: 11px 18px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    color: var(--espresso);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .chat-input::placeholder { color: var(--warm-gray); }
+  .chat-input:focus { border-color: var(--gold); }
+
+  .chat-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--mocha);
+    border: none;
+    color: var(--ivory);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+  .chat-send:hover {
+    background: var(--gold);
+    color: var(--espresso);
+  }
+
+  .chat-send svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .chat-typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: var(--ivory);
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+    max-width: 80px;
+    box-shadow: 0 2px 8px rgba(42, 31, 24, 0.06);
+  }
+
+  .chat-typing span {
+    width: 7px;
+    height: 7px;
+    background: var(--warm-gray);
+    border-radius: 50%;
+    animation: typingDot 1.4s ease-in-out infinite;
+  }
+
+  .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-4px); }
+  }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 1024px) {
     .nav { padding: 0 30px; }
@@ -883,6 +1231,9 @@
     .forecast-section { padding: 80px 20px; }
     .philosophy-section { padding: 80px 20px; }
     .footer { padding: 60px 20px 30px; }
+    .chat-launcher { bottom: 20px; right: 20px; }
+    .chat-window { bottom: 95px; right: 20px; height: 520px; }
+    .chat-toggle { width: 56px; height: 56px; }
   }
 </style>
 </head>
@@ -1095,17 +1446,17 @@
     </div>
     <div class="footer-col">
       <h4>Navigation</h4>
-      <a href="#articles">Articles & News</a>
-      <a href="#lookbook">Lookbook Archives</a>
-      <a href="#forecast">Trend Forecast</a>
-      <a href="#about">Brand Story</a>
+      <a href="https://www.vogue.com/fashion" target="_blank" rel="noopener">Articles & News</a>
+      <a href="https://www.vogue.com/fashion-shows" target="_blank" rel="noopener">Lookbook Archives</a>
+      <a href="https://www.wgsn.com/en/products/fashion-design" target="_blank" rel="noopener">Trend Forecast</a>
+      <a href="https://www.businessoffashion.com/" target="_blank" rel="noopener">Brand Story</a>
     </div>
     <div class="footer-col">
       <h4>Editions</h4>
-      <a href="#">Paris Fashion Week</a>
-      <a href="#">Milan Haute Couture</a>
-      <a href="#">London Street Style</a>
-      <a href="#">New York Runway</a>
+      <a href="https://www.fhcm.paris/en/paris-fashion-week" target="_blank" rel="noopener">Paris Fashion Week</a>
+      <a href="https://www.vogue.com/tag/event/milan-fashion-week" target="_blank" rel="noopener">Milan Haute Couture</a>
+      <a href="https://www.vogue.co.uk/tags/street-chic" target="_blank" rel="noopener">London Street Style</a>
+      <a href="https://www.vogue.com/tag/event/new-york-fashion-week" target="_blank" rel="noopener">New York Runway</a>
     </div>
     <div class="footer-newsletter">
       <h4 style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;font-weight:500;">Editorial Dispatch</h4>
@@ -1120,6 +1471,50 @@
     © 2026 FashionEdition Journal. All Rights Reserved. Designed as an Editorial Portfolio Page.
   </div>
 </footer>
+
+<!-- Chat Widget -->
+<div class="chat-launcher">
+  <div class="chat-tooltip" id="chatTooltip">
+    <button class="chat-tooltip-close" id="tooltipClose">✕</button>
+    <strong>Welcome to FashionEdition ✦</strong>
+    Have a quick question about trends, lookbooks, or editorial coverage? Chat with us!
+  </div>
+  <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
+    <span class="chat-toggle-pulse"></span>
+    <svg id="chatIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">F</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">FashionEdition Concierge</div>
+      <div class="chat-header-status">● Online · Replies instantly</div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-quick-questions" id="chatQuickQuestions">
+    <button class="chat-quick-btn" data-q="trends">What are the 2027 trends?</button>
+    <button class="chat-quick-btn" data-q="lookbook">View latest lookbook</button>
+    <button class="chat-quick-btn" data-q="subscribe">How to subscribe?</button>
+    <button class="chat-quick-btn" data-q="contact">Contact the editors</button>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." autocomplete="off">
+    <button class="chat-send" id="chatSend" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <script>
   // Navbar scroll effect
@@ -1150,10 +1545,179 @@
     observer.observe(el);
   });
 
-  // Stagger journal cards delay dynamically
   document.querySelectorAll('.journal-grid .journal-card').forEach((card, index) => {
     card.style.transitionDelay = `${index * 0.15}s`;
   });
+
+  // ===== CHAT WIDGET =====
+  const chatToggle = document.getElementById('chatToggle');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatTooltip = document.getElementById('chatTooltip');
+  const tooltipClose = document.getElementById('tooltipClose');
+  const chatQuickQuestions = document.getElementById('chatQuickQuestions');
+
+  let chatOpened = false;
+
+  // Predefined Q&A responses
+  const chatResponses = {
+    trends: "For 2027, we're seeing a strong return to tactile luxury — deep mocha hues, soft structured shoulders, and sustainable cashmeres are leading the conversation. Would you like to explore our full forecast report?",
+    lookbook: "Our latest seasonal lookbooks feature four curated editorials: The Capsule Suit, Tactile Knits, Urban Elegance, and Midnight Bronze. You can view them in the Lookbooks section above ✦",
+    subscribe: "You can subscribe to our weekly Editorial Dispatch newsletter right here on the page — just scroll to the footer and enter your email. We send curated trend reports every Thursday.",
+    contact: "Our editorial desk is available at editors@fashionedition.com, or you can reach our Paris studio at +33 1 42 60 40 20. We typically respond within 48 hours.",
+    default: "Thank you for your question! Our editorial team will review this and respond shortly. In the meantime, feel free to explore our latest articles, lookbooks, or 2027 trend forecast ✦"
+  };
+
+  // Show tooltip on page load (delayed)
+  setTimeout(() => {
+    if (!chatOpened) {
+      chatTooltip.classList.add('show');
+      // Auto-hide tooltip after 8 seconds
+      setTimeout(() => {
+        chatTooltip.classList.remove('show');
+      }, 8000);
+    }
+  }, 2000);
+
+  tooltipClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    chatTooltip.classList.remove('show');
+  });
+
+  // Open chat
+  function openChat() {
+    chatOpened = true;
+    chatWindow.classList.add('open');
+    chatToggle.classList.add('open');
+    chatTooltip.classList.remove('show');
+    if (chatMessages.children.length === 0) {
+      addBotMessage("Welcome to FashionEdition ✦ I'm your style concierge. Ask me anything about our editorials, trends, lookbooks, or how to get in touch with our team.");
+    }
+    setTimeout(() => chatInput.focus(), 400);
+  }
+
+  // Close chat
+  function closeChat() {
+    chatWindow.classList.remove('open');
+    chatToggle.classList.remove('open');
+  }
+
+  chatToggle.addEventListener('click', () => {
+    if (chatWindow.classList.contains('open')) {
+      closeChat();
+    } else {
+      openChat();
+    }
+  });
+
+  chatClose.addEventListener('click', closeChat);
+
+  // Add bot message
+  function addBotMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg bot';
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Add user message
+  function addUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg user';
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Show typing indicator
+  function showTyping() {
+    const typing = document.createElement('div');
+    typing.className = 'chat-typing';
+    typing.id = 'typingIndicator';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    chatMessages.appendChild(typing);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function hideTyping() {
+    const typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+  }
+
+  // Handle user message
+  function handleUserMessage(text) {
+    if (!text.trim()) return;
+    addUserMessage(text);
+    chatInput.value = '';
+
+    showTyping();
+
+    // Find matching response
+    const lowerText = text.toLowerCase();
+    let response = chatResponses.default;
+
+    if (lowerText.includes('trend') || lowerText.includes('2027') || lowerText.includes('forecast')) {
+      response = chatResponses.trends;
+    } else if (lowerText.includes('lookbook') || lowerText.includes('collection') || lowerText.includes('editorial')) {
+      response = chatResponses.lookbook;
+    } else if (lowerText.includes('subscri') || lowerText.includes('newsletter') || lowerText.includes('join')) {
+      response = chatResponses.subscribe;
+    } else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('reach') || lowerText.includes('editor')) {
+      response = chatResponses.contact;
+    } else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('hey')) {
+      response = "Hello and welcome to FashionEdition ✦ How can I assist you with our editorial content today?";
+    } else if (lowerText.includes('thank')) {
+      response = "You're most welcome! Feel free to ask anything else about our fashion coverage ✦";
+    }
+
+    setTimeout(() => {
+      hideTyping();
+      addBotMessage(response);
+    }, 900 + Math.random() * 500);
+  }
+
+  // Send button click
+  chatSend.addEventListener('click', () => {
+    handleUserMessage(chatInput.value);
+  });
+
+  // Enter key
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleUserMessage(chatInput.value);
+    }
+  });
+
+  // Quick question buttons
+  chatQuickQuestions.addEventListener('click', (e) => {
+    if (e.target.classList.contains('chat-quick-btn')) {
+      const q = e.target.dataset.q;
+      const labels = {
+        trends: "What are the 2027 trends?",
+        lookbook: "Show me the latest lookbook",
+        subscribe: "How do I subscribe?",
+        contact: "How can I contact the editors?"
+      };
+      addUserMessage(labels[q]);
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        addBotMessage(chatResponses[q]);
+      }, 900);
+    }
+  });
+
+  // Auto-open chat on page load (with delay)
+  setTimeout(() => {
+    if (!chatOpened) {
+      openChat();
+    }
+  }, 3500);
 </script>
 </body>
 </html>
