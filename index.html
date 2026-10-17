@@ -744,6 +744,168 @@
     color: var(--ivory);
   }
 
+  /* ===== EDITORIAL QUOTE (VIDEO) SECTION ===== */
+  .editorial-quote-section {
+    padding: 140px 60px;
+    background: var(--espresso);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .editorial-quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--amber));
+    opacity: 0.4;
+  }
+
+  .editorial-quote-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Video side */
+  .editorial-quote-photo {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--mocha);
+  }
+
+  .editorial-quote-photo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85) contrast(1.05);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .editorial-quote-photo:hover video {
+    transform: scale(1.04);
+  }
+
+  .editorial-quote-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(42, 31, 24, 0.6) 100%);
+    pointer-events: none;
+  }
+
+  .editorial-quote-photo-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: var(--ivory);
+  }
+
+  .caption-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .caption-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ivory);
+  }
+
+  /* Quote side */
+  .editorial-quote-content {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .editorial-quote-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 32px;
+  }
+
+  .editorial-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 140px;
+    line-height: 0.8;
+    color: var(--amber);
+    opacity: 0.35;
+    position: absolute;
+    top: 60px;
+    left: -10px;
+    font-style: italic;
+    pointer-events: none;
+  }
+
+  .editorial-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 2.8vw, 36px);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ivory);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .editorial-quote-text em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 400;
+  }
+
+  .editorial-quote-author {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .author-line {
+    width: 50px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.5;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ivory);
+    letter-spacing: 0.5px;
+  }
+
+  .author-role {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
   /* ===== FOOTER ===== */
   .footer {
     background: var(--espresso);
@@ -1214,6 +1376,15 @@
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .hero-features { flex-wrap: wrap; }
     .hero-feature { flex: 1 1 50%; }
+    .editorial-quote-section { padding: 100px 30px; }
+    .editorial-quote-wrapper {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+    .editorial-quote-photo {
+      max-width: 500px;
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 768px) {
@@ -1230,6 +1401,15 @@
     .lookbook-section { padding: 80px 20px; }
     .forecast-section { padding: 80px 20px; }
     .philosophy-section { padding: 80px 20px; }
+    .editorial-quote-section { padding: 80px 20px; }
+    .editorial-quote-mark {
+      font-size: 90px;
+      top: 40px;
+      left: -5px;
+    }
+    .editorial-quote-text {
+      font-size: 22px;
+    }
     .footer { padding: 60px 20px 30px; }
     .chat-launcher { bottom: 20px; right: 20px; }
     .chat-window { bottom: 95px; right: 20px; height: 520px; }
@@ -1437,6 +1617,44 @@
   <a href="#contact" class="philosophy-btn">Connect With Editors →</a>
 </section>
 
+<!-- ===== EDITORIAL QUOTE (VIDEO) SECTION ===== -->
+<section class="editorial-quote-section">
+  <div class="editorial-quote-wrapper">
+    
+    <!-- Left: Video -->
+    <div class="editorial-quote-photo">
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.shopify.com/videos/c/o/v/2d9f20242f194621a2de6f3a0bf06591.mov" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="editorial-quote-photo-caption">
+        <span class="caption-label">Issue N°17</span>
+        <span class="caption-title">The Quiet Revolution</span>
+      </div>
+    </div>
+
+    <!-- Right: Quote -->
+    <div class="editorial-quote-content">
+      <span class="editorial-quote-eyebrow">✦ From the Editor's Desk</span>
+      <div class="editorial-quote-mark">"</div>
+      <blockquote class="editorial-quote-text">
+        In the silence between seasons, true style speaks loudest. 
+        We do not chase what is worn — we curate what <em>endures</em>. 
+        Every silhouette, every shade of mocha, every structured shoulder 
+        is a quiet conversation between the wearer and the world.
+      </blockquote>
+      <div class="editorial-quote-author">
+        <div class="author-line"></div>
+        <div class="author-info">
+          <span class="author-name">Isabelle Moreau</span>
+          <span class="author-role">Editor-in-Chief · FashionEdition</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- Footer -->
 <footer class="footer" id="contact">
   <div class="footer-top">
@@ -1562,7 +1780,6 @@
 
   let chatOpened = false;
 
-  // Predefined Q&A responses
   const chatResponses = {
     trends: "For 2027, we're seeing a strong return to tactile luxury — deep mocha hues, soft structured shoulders, and sustainable cashmeres are leading the conversation. Would you like to explore our full forecast report?",
     lookbook: "Our latest seasonal lookbooks feature four curated editorials: The Capsule Suit, Tactile Knits, Urban Elegance, and Midnight Bronze. You can view them in the Lookbooks section above ✦",
@@ -1571,11 +1788,9 @@
     default: "Thank you for your question! Our editorial team will review this and respond shortly. In the meantime, feel free to explore our latest articles, lookbooks, or 2027 trend forecast ✦"
   };
 
-  // Show tooltip on page load (delayed)
   setTimeout(() => {
     if (!chatOpened) {
       chatTooltip.classList.add('show');
-      // Auto-hide tooltip after 8 seconds
       setTimeout(() => {
         chatTooltip.classList.remove('show');
       }, 8000);
@@ -1587,7 +1802,6 @@
     chatTooltip.classList.remove('show');
   });
 
-  // Open chat
   function openChat() {
     chatOpened = true;
     chatWindow.classList.add('open');
@@ -1599,7 +1813,6 @@
     setTimeout(() => chatInput.focus(), 400);
   }
 
-  // Close chat
   function closeChat() {
     chatWindow.classList.remove('open');
     chatToggle.classList.remove('open');
@@ -1615,7 +1828,6 @@
 
   chatClose.addEventListener('click', closeChat);
 
-  // Add bot message
   function addBotMessage(text) {
     const msg = document.createElement('div');
     msg.className = 'chat-msg bot';
@@ -1624,7 +1836,6 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Add user message
   function addUserMessage(text) {
     const msg = document.createElement('div');
     msg.className = 'chat-msg user';
@@ -1633,7 +1844,6 @@
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Show typing indicator
   function showTyping() {
     const typing = document.createElement('div');
     typing.className = 'chat-typing';
@@ -1648,7 +1858,6 @@
     if (typing) typing.remove();
   }
 
-  // Handle user message
   function handleUserMessage(text) {
     if (!text.trim()) return;
     addUserMessage(text);
@@ -1656,7 +1865,6 @@
 
     showTyping();
 
-    // Find matching response
     const lowerText = text.toLowerCase();
     let response = chatResponses.default;
 
@@ -1680,12 +1888,10 @@
     }, 900 + Math.random() * 500);
   }
 
-  // Send button click
   chatSend.addEventListener('click', () => {
     handleUserMessage(chatInput.value);
   });
 
-  // Enter key
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -1693,7 +1899,6 @@
     }
   });
 
-  // Quick question buttons
   chatQuickQuestions.addEventListener('click', (e) => {
     if (e.target.classList.contains('chat-quick-btn')) {
       const q = e.target.dataset.q;
@@ -1712,7 +1917,6 @@
     }
   });
 
-  // Auto-open chat on page load (with delay)
   setTimeout(() => {
     if (!chatOpened) {
       openChat();
