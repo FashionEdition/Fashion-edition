@@ -1,1 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FashionEdition — High Fashion Journal & Editorial</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-400-italic.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-300-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-500-normal.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #f5f0ea;
+    --ivory: #faf7f2;
+    --mocha: #3d2e24;
+    --espresso: #2a1f18;
+    --taupe: #8b7355;
+    --amber: #c4a574;
+    --warm-gray: #a89a8a;
+    --soft-brown: #6b5744;
+    --gold: #b8956a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--ivory);
+    color: var(--mocha);
+    overflow-x: hidden;
+    font-weight: 300;
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 60px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav.scrolled {
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(61, 46, 36, 0.08);
+    height: 70px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--espresso);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-logo span {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--taupe);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mocha);
+    font-weight: 400;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-subscribe {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ivory);
+    background: var(--mocha);
+    padding: 10px 28px;
+    transition: all 0.4s;
+    font-weight: 400;
+  }
+
+  .nav-subscribe:hover {
+    background: var(--gold);
+    color: var(--espresso);
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--espresso);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    filter: saturate(0.7) contrast(1.1);
+    transform: scale(1.05);
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroZoom {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(180deg,
+        rgba(42, 31, 24, 0.5) 0%,
+        rgba(42, 31, 24, 0.2) 40%,
+        rgba(42, 31, 24, 0.3) 70%,
+        rgba(42, 31, 24, 0.85) 100%
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 40px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--amber);
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 110px);
+    font-weight: 700;
+    line-height: 1.0;
+    color: var(--ivory);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-title .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--amber);
+  }
+
+  .hero-subtitle-line {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--warm-gray);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245, 240, 234, 0.7);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ivory);
+    border: 1px solid rgba(196, 165, 116, 0.5);
+    padding: 18px 44px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    animation: fadeUp 1.2s 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-cta:hover {
+    background: var(--amber);
+    color: var(--espresso);
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .hero-cta svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s;
+  }
+
+  .hero-cta:hover svg { transform: translateX(4px); }
+
+  .hero-sublink {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.3s;
+    animation: fadeUp 1.2s 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-sublink:hover {
+    opacity: 1;
+    color: var(--ivory);
+  }
+
+  /* Hero Features Strip */
+  .hero-features {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    border-top: 1px solid rgba(196, 165, 116, 0.15);
+    opacity: 0;
+    animation: fadeUp 1s 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .hero-feature {
+    flex: 1;
+    padding: 28px 30px;
+    text-align: center;
+    border-right: 1px solid rgba(196, 165, 116, 0.1);
+    transition: background 0.4s;
+  }
+
+  .hero-feature:last-child { border-right: none; }
+  .hero-feature:hover { background: rgba(196, 165, 116, 0.06); }
+
+  .hero-feature-icon {
+    font-size: 14px;
+    color: var(--amber);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+
+  .hero-feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--ivory);
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+
+  .hero-feature-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  /* Hero scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .scroll-indicator span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--amber), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-section {
+    background: var(--espresso);
+    padding: 20px 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(196, 165, 116, 0.1);
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0 30px;
+    white-space: nowrap;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--warm-gray);
+    letter-spacing: 1px;
+  }
+
+  .marquee-item .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--amber);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== JOURNAL ENTRIES ===== */
+  .section {
+    padding: 120px 60px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    color: var(--espresso);
+    margin-bottom: 12px;
+  }
+
+  .section-title .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--taupe);
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--warm-gray);
+    letter-spacing: 0.3px;
+  }
+
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .journal-card {
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .journal-card:hover { transform: translateY(-8px); }
+
+  .journal-card-img {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    aspect-ratio: 3/4;
+  }
+
+  .journal-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .journal-card:hover .journal-card-img img {
+    transform: scale(1.06);
+  }
+
+  .journal-card-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: rgba(42, 31, 24, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 8px 16px;
+  }
+
+  .journal-card-meta {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 10px;
+  }
+
+  .journal-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--espresso);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+
+  .journal-card:hover .journal-card-title { color: var(--gold); }
+
+  .journal-card-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+    margin-bottom: 20px;
+  }
+
+  .journal-card-link {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mocha);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s, gap 0.3s;
+  }
+
+  .journal-card-link:hover {
+    color: var(--gold);
+    gap: 14px;
+  }
+
+  /* ===== LOOKBOOK ===== */
+  .lookbook-section {
+    background: var(--espresso);
+    padding: 120px 60px;
+  }
+
+  .lookbook-section .section-eyebrow { color: var(--amber); }
+  .lookbook-section .section-title { color: var(--ivory); }
+  .lookbook-section .section-title .italic { color: var(--warm-gray); }
+  .lookbook-section .section-subtitle { color: rgba(245, 240, 234, 0.5); }
+
+  .lookbook-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .lookbook-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+
+  .lookbook-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  .lookbook-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lookbook-item:hover img { transform: scale(1.05); }
+
+  .lookbook-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42, 31, 24, 0.8) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .lookbook-item:hover .lookbook-item-overlay { opacity: 1; }
+
+  .lookbook-item-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--ivory);
+    margin-bottom: 4px;
+  }
+
+  .lookbook-item-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  /* ===== FORECAST ===== */
+  .forecast-section {
+    padding: 120px 60px;
+    background: var(--cream);
+  }
+
+  .forecast-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .forecast-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    color: var(--espresso);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .forecast-text h3 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--taupe);
+  }
+
+  .forecast-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--warm-gray);
+    margin-bottom: 36px;
+  }
+
+  .forecast-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ivory);
+    background: var(--mocha);
+    padding: 18px 40px;
+    transition: all 0.4s;
+  }
+
+  .forecast-btn:hover {
+    background: var(--gold);
+    color: var(--espresso);
+  }
+
+  .forecast-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .forecast-images img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: transform 0.6s;
+  }
+
+  .forecast-images img:hover { transform: scale(1.03); }
+
+  .forecast-images img:first-child {
+    grid-column: span 2;
+    height: 300px;
+  }
+
+  /* ===== PHILOSOPHY ===== */
+  .philosophy-section {
+    padding: 140px 60px;
+    text-align: center;
+    background: var(--ivory);
+    position: relative;
+  }
+
+  .philosophy-section::before {
+    content: '✦';
+    display: block;
+    font-size: 20px;
+    color: var(--amber);
+    margin-bottom: 40px;
+  }
+
+  .philosophy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--espresso);
+    max-width: 700px;
+    margin: 0 auto 28px;
+    line-height: 1.3;
+  }
+
+  .philosophy-title .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--taupe);
+  }
+
+  .philosophy-desc {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--warm-gray);
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+
+  .philosophy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mocha);
+    border: 1px solid var(--mocha);
+    padding: 16px 36px;
+    margin-top: 24px;
+    transition: all 0.4s;
+  }
+
+  .philosophy-btn:hover {
+    background: var(--mocha);
+    color: var(--ivory);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--espresso);
+    padding: 80px 60px 40px;
+    color: var(--ivory);
+  }
+
+  .footer-top {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(196, 165, 116, 0.12);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand span {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--warm-gray);
+  }
+
+  .footer-brand-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--warm-gray);
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 13px;
+    color: var(--warm-gray);
+    text-decoration: none;
+    margin-bottom: 14px;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--ivory); }
+
+  .footer-newsletter p {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .footer-newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .footer-newsletter-form input {
+    flex: 1;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(196, 165, 116, 0.2);
+    color: var(--ivory);
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .footer-newsletter-form input::placeholder { color: var(--warm-gray); }
+  .footer-newsletter-form input:focus { border-color: var(--amber); }
+
+  .footer-newsletter-form button {
+    padding: 14px 24px;
+    background: var(--gold);
+    border: none;
+    color: var(--espresso);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+
+  .footer-newsletter-form button:hover { background: var(--amber); }
+
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: center;
+    font-size: 11px;
+    color: rgba(168, 154, 138, 0.5);
+    letter-spacing: 1px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .nav { padding: 0 30px; }
+    .nav-links { gap: 24px; }
+    .section { padding: 80px 30px; }
+    .journal-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .lookbook-grid { grid-template-columns: repeat(2, 1fr); }
+    .lookbook-item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/9; }
+    .forecast-content { grid-template-columns: 1fr; gap: 50px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .hero-features { flex-wrap: wrap; }
+    .hero-feature { flex: 1 1 50%; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    .journal-grid { grid-template-columns: 1fr; }
+    .lookbook-grid { grid-template-columns: 1fr 1fr; }
+    .lookbook-item:first-child { grid-column: span 2; }
+    .hero-features { display: none; }
+    .scroll-indicator { bottom: 40px; }
+    .footer-top { grid-template-columns: 1fr; gap: 30px; }
+    .forecast-images img:first-child { height: 200px; }
+    .forecast-images img { height: 180px; }
+    .lookbook-section { padding: 80px 20px; }
+    .forecast-section { padding: 80px 20px; }
+    .philosophy-section { padding: 80px 20px; }
+    .footer { padding: 60px 20px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Fashion<span>Edition</span></a>
+  <ul class="nav-links">
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#lookbook">Lookbooks</a></li>
+    <li><a href="#forecast">Forecast</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-subscribe">Subscribe</a>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/235e732cc8d3e31e08de014b027270da_468993e9-0fdd-4dee-a5b3-259d6025216c.jpg?v=1792229445" alt="Fashion Editorial">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. 2026 — Independent Fashion Journal</div>
+    <h1 class="hero-title">Fashion<span class="italic">Edition</span></h1>
+    <p class="hero-subtitle-line">The Art of Modern Style & Editorial Vision</p>
+    <p class="hero-desc">Curated trend reporting, runway commentary, and high-fashion visual narratives for the modern style authority.</p>
+    
+    <!-- Hero Button with External Link -->
+    <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="hero-cta">
+      Explore Journal
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <div>
+      <a href="#articles" class="hero-sublink">or scroll down to read latest articles ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="hero-features">
+    <div class="hero-feature">
+      <div class="hero-feature-icon">✦</div>
+      <div class="hero-feature-title">Runway Analysis</div>
+      <div class="hero-feature-sub">Paris & Milan Coverage</div>
+    </div>
+    <div class="hero-feature">
+      <div class="hero-feature-icon">✦</div>
+      <div class="hero-feature-title">Trend Reports</div>
+      <div class="hero-feature-sub">Seasonal Color Guides</div>
+    </div>
+    <div class="hero-feature">
+      <div class="hero-feature-icon">✦</div>
+      <div class="hero-feature-title">Atelier Insights</div>
+      <div class="hero-feature-sub">Haute Couture Craft</div>
+    </div>
+    <div class="hero-feature">
+      <div class="hero-feature-icon">✦</div>
+      <div class="hero-feature-title">Style Commentary</div>
+      <div class="hero-feature-sub">Cultural Fashion Notes</div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="dot"></span> Paris Fashion Week</div>
+    <div class="marquee-item"><span class="dot"></span> Milan Haute Couture</div>
+    <div class="marquee-item"><span class="dot"></span> London Street Style</div>
+    <div class="marquee-item"><span class="dot"></span> New York Runway</div>
+    <div class="marquee-item"><span class="dot"></span> Autumn/Winter 2027</div>
+    <div class="marquee-item"><span class="dot"></span> Tactile Luxury</div>
+    <div class="marquee-item"><span class="dot"></span> Warm Palette Neutrality</div>
+    <div class="marquee-item"><span class="dot"></span> Paris Fashion Week</div>
+    <div class="marquee-item"><span class="dot"></span> Milan Haute Couture</div>
+    <div class="marquee-item"><span class="dot"></span> London Street Style</div>
+    <div class="marquee-item"><span class="dot"></span> New York Runway</div>
+    <div class="marquee-item"><span class="dot"></span> Autumn/Winter 2027</div>
+    <div class="marquee-item"><span class="dot"></span> Tactile Luxury</div>
+    <div class="marquee-item"><span class="dot"></span> Warm Palette Neutrality</div>
+  </div>
+</div>
+
+<!-- Journal Entries -->
+<section class="section" id="articles">
+  <div class="section-header">
+    <div class="section-eyebrow">Journal Entries</div>
+    <h2 class="section-title">Latest Editorial <span class="italic">Commentary</span></h2>
+    <p class="section-subtitle">Deep analysis and visual storytelling from the world of high fashion</p>
+  </div>
+  <div class="journal-grid">
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/d28b1d90d968e46cc9e5db12e284e216.jpg?v=1792229445" alt="Runway Analysis">
+        <span class="journal-card-tag">Runway Analysis</span>
+      </div>
+      <div class="journal-card-meta">October 2026 · 5 Min Read</div>
+      <h3 class="journal-card-title">The Architecture of Modern Silhouette</h3>
+      <p class="journal-card-desc">How oversized blazers and structured mocha tailoring are redefining power dressing for the new season.</p>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="journal-card-link">Read Full Essay →</a>
+    </article>
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/25095f76b28ddd74ff22ef632df81746.jpg?v=1792229445" alt="Haute Culture">
+        <span class="journal-card-tag">Haute Culture</span>
+      </div>
+      <div class="journal-card-meta">October 2026 · 4 Min Read</div>
+      <h3 class="journal-card-title">Warm Taupe & The New Neutral Standard</h3>
+      <p class="journal-card-desc">Exploring the psychological shift toward earthy espresso and soft amber tones on European catwalks.</p>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="journal-card-link">Read Full Essay →</a>
+    </article>
+    <article class="journal-card">
+      <div class="journal-card-img">
+        <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/d64a55c64f9895b03c51274b308f7c6b.jpg?v=1792229445" alt="Accessories">
+        <span class="journal-card-tag">Accessories</span>
+      </div>
+      <div class="journal-card-meta">October 2026 · 6 Min Read</div>
+      <h3 class="journal-card-title">Minimalist Leathercraft & Sculptural Accessories</h3>
+      <p class="journal-card-desc">An insider look into artisanal leather workshops and the revival of understated structural handbags.</p>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="journal-card-link">Read Full Essay →</a>
+    </article>
+  </div>
+</section>
+
+<!-- Lookbook -->
+<section class="lookbook-section" id="lookbook">
+  <div class="section-header">
+    <div class="section-eyebrow">Visual Archives</div>
+    <h2 class="section-title">Seasonal <span class="italic">Lookbooks</span></h2>
+    <p class="section-subtitle">Curated visual narratives from the latest collections</p>
+  </div>
+  <div class="lookbook-grid">
+    <div class="lookbook-item">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/4449ee9c25b3c2329e55d291c204716c.jpg?v=1792229445" alt="The Capsule Suit">
+      <div class="lookbook-item-overlay">
+        <div class="lookbook-item-title">The Capsule Suit</div>
+        <div class="lookbook-item-sub">Autumn/Winter Collection</div>
+      </div>
+    </div>
+    <div class="lookbook-item">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/3528894fd50654c2c464abbdba862ed6.jpg?v=1792229444" alt="Tactile Knits">
+      <div class="lookbook-item-overlay">
+        <div class="lookbook-item-title">Tactile Knits</div>
+        <div class="lookbook-item-sub">Atelier Series</div>
+      </div>
+    </div>
+    <div class="lookbook-item">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/photo-1763069228076-c7e3995e1769.avif?v=1792229444" alt="Urban Elegance">
+      <div class="lookbook-item-overlay">
+        <div class="lookbook-item-title">Urban Elegance</div>
+        <div class="lookbook-item-sub">Editorial Series</div>
+      </div>
+    </div>
+    <div class="lookbook-item">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/e1b23dba0fc34c17cae2195eb6dace47.jpg?v=1792229444" alt="Midnight Bronze">
+      <div class="lookbook-item-overlay">
+        <div class="lookbook-item-title">Midnight Bronze</div>
+        <div class="lookbook-item-sub">Runway Preview</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forecast -->
+<section class="forecast-section" id="forecast">
+  <div class="section-header">
+    <div class="section-eyebrow">2027 Trend Forecast</div>
+    <h2 class="section-title">The Resurgence of <span class="italic">Tactile Luxury</span></h2>
+    <p class="section-subtitle">& Warm Palette Neutrality</p>
+  </div>
+  <div class="forecast-content">
+    <div class="forecast-text">
+      <h3>Deep Mocha Hues & <span class="italic">Soft Structured</span> Shoulders</h3>
+      <p>Our forecasting team analyzes runway movements, textile innovations, and cultural shifts. Upcoming seasons emphasize deep mocha hues, soft structured shoulders, and sustainable cashmeres.</p>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="forecast-btn">
+        Download Full PDF Forecast
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+    <div class="forecast-images">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/8d96359ae6ccf869a2d3ecccfbb7d000.jpg?v=1792229444" alt="Forecast 1">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/premium_photo-1675186049419-d48f4b28fe7c.avif?v=1792229444" alt="Forecast 2">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/IMG_0597.jpg?v=1792227650" alt="Forecast 3">
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy-section" id="about">
+  <h2 class="philosophy-title">Curating the Art of Dress & <span class="italic">Cultural Style</span></h2>
+  <p class="philosophy-desc">Founded as an independent fashion publication, FashionEdition explores the intersection of high fashion, architectural tailoring, and contemporary culture.</p>
+  <p class="philosophy-desc">We champion timeless aesthetics over fleeting fast fashion trends, providing our readership with deep analytical commentary and immaculate visual storytelling.</p>
+  <a href="#contact" class="philosophy-btn">Connect With Editors →</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Fashion<span>Edition</span></div>
+      <p class="footer-brand-desc">An independent digital magazine and trend platform dedicated to high fashion, couture craftsmanship, and style editorial.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="#articles">Articles & News</a>
+      <a href="#lookbook">Lookbook Archives</a>
+      <a href="#forecast">Trend Forecast</a>
+      <a href="#about">Brand Story</a>
+    </div>
+    <div class="footer-col">
+      <h4>Editions</h4>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener">Paris Fashion Week</a>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener">Milan Haute Couture</a>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener">London Street Style</a>
+      <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener">New York Runway</a>
+    </div>
+    <div class="footer-newsletter">
+      <h4 style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;font-weight:500;">Editorial Dispatch</h4>
+      <p>Receive our weekly curated newsletter directly to your inbox.</p>
+      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='SUBSCRIBED ✓'; this.querySelector('input').value='';">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 FashionEdition Journal. All Rights Reserved. Designed as an Editorial Portfolio Page.
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Intersection Observer for scroll animations
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.journal-card, .lookbook-item, .forecast-content, .philosophy-title, .philosophy-desc, .philosophy-btn').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(40px)';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+    observer.observe(el);
+  });
+
+  // Stagger journal cards delay dynamically
+  document.querySelectorAll('.journal-grid .journal-card').forEach((card, index) => {
+    card.style.transitionDelay = `${index * 0.15}s`;
+  });
+</script>
+</body>
+</html>
 
