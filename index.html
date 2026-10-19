@@ -371,6 +371,192 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ===== VICTORIA'S SECRET 2026 SECTION (MOVED UP) ===== */
+  .vs-section {
+    padding: 100px 60px;
+    background: var(--ivory);
+    position: relative;
+    border-bottom: 1px solid rgba(61, 46, 36, 0.05);
+  }
+
+  .vs-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .vs-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .vs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--espresso);
+    color: var(--ivory);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .vs-badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #ff4d4d;
+    border-radius: 50%;
+    animation: pulseRed 1.5s infinite;
+  }
+
+  @keyframes pulseRed {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .vs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 700;
+    color: var(--espresso);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .vs-title .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--taupe);
+  }
+
+  .vs-subtitle {
+    font-size: 15px;
+    color: var(--warm-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .vs-main-video {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--espresso);
+    border-radius: 4px;
+  }
+
+  .vs-main-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .vs-main-video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(42, 31, 24, 0.9), transparent);
+    color: var(--ivory);
+  }
+
+  .vs-main-video-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+
+  .vs-main-video-desc {
+    font-size: 13px;
+    color: var(--warm-gray);
+    max-width: 500px;
+  }
+
+  .vs-side-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .vs-side-card {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .vs-side-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .vs-side-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .vs-side-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42, 31, 24, 0.85) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .vs-side-card:hover .vs-side-card-overlay {
+    opacity: 1;
+  }
+
+  .vs-side-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--ivory);
+    margin-bottom: 4px;
+  }
+
+  .vs-side-card-sub {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .vs-footer-note {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+
+  .vs-footer-note a {
+    color: var(--mocha);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s;
+  }
+
+  .vs-footer-note a:hover {
+    color: var(--gold);
+  }
+
   /* ===== MARQUEE ===== */
   .marquee-section {
     background: var(--espresso);
@@ -1385,6 +1571,10 @@
       max-width: 500px;
       margin: 0 auto;
     }
+    .vs-section { padding: 80px 30px; }
+    .vs-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 768px) {
@@ -1414,6 +1604,8 @@
     .chat-launcher { bottom: 20px; right: 20px; }
     .chat-window { bottom: 95px; right: 20px; height: 520px; }
     .chat-toggle { width: 56px; height: 56px; }
+    .vs-section { padding: 60px 20px; }
+    .vs-main-video-title { font-size: 22px; }
   }
 </style>
 </head>
@@ -1481,6 +1673,55 @@
       <div class="hero-feature-icon">✦</div>
       <div class="hero-feature-title">Style Commentary</div>
       <div class="hero-feature-sub">Cultural Fashion Notes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VICTORIA'S SECRET 2026 SHOWCASE (MOVED UP) ===== -->
+<section class="vs-section">
+  <div class="vs-container">
+    <div class="vs-header">
+      <div class="vs-badge">
+        <span class="vs-badge-dot"></span>
+        Just Happened
+      </div>
+      <h2 class="vs-title">Victoria's Secret <span class="italic">Fashion Show 2026</span></h2>
+      <p class="vs-subtitle">A triumphant return to the runway. Witness the rebirth of an icon through cinematic glamour, angelic wings, and the new era of inclusive luxury.</p>
+    </div>
+
+    <div class="vs-grid">
+      <!-- Main Video -->
+      <div class="vs-main-video">
+        <video autoplay muted loop playsinline>
+          <source src="https://cdn.shopify.com/videos/c/o/v/0d628b02490c4bb4ad2f687266baece2.mov" type="video/mp4">
+        </video>
+        <div class="vs-main-video-overlay">
+          <h3 class="vs-main-video-title">The Grand Return</h3>
+          <p class="vs-main-video-desc">Highlights from the most anticipated fashion event of the year, featuring new faces and legendary supermodels.</p>
+        </div>
+      </div>
+
+      <!-- Side Images -->
+      <div class="vs-side-stack">
+        <div class="vs-side-card">
+          <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/GettyImages-2300886561-99abcdc14f1e440f86e2e4f05d033f74.jpg?v=1792431355" alt="VS Runway Moment">
+          <div class="vs-side-card-overlay">
+            <div class="vs-side-card-title">Iconic Wings</div>
+            <div class="vs-side-card-sub">Runway Highlights</div>
+          </div>
+        </div>
+        <div class="vs-side-card">
+          <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/712d6fa1-7444-4b61-8705-ee0f9bff3277_1792373151.avif?v=1792431304" alt="VS Backstage">
+          <div class="vs-side-card-overlay">
+            <div class="vs-side-card-title">Behind the Scenes</div>
+            <div class="vs-side-card-sub">Exclusive Access</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-footer-note">
+      <p>Coverage curated by FashionEdition. For full show details, visit <a href="https://www.victoriassecret.com" target="_blank" rel="noopener">Victoria's Secret Official</a>.</p>
     </div>
   </div>
 </section>
