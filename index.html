@@ -81,9 +81,7 @@
     color: var(--amber);
   }
 
-  .nav.scrolled .nav-logo span {
-    color: var(--taupe);
-  }
+  .nav.scrolled .nav-logo span { color: var(--taupe); }
 
   .nav-links {
     display: flex;
@@ -149,7 +147,6 @@
     border-color: var(--gold);
   }
 
-  /* Mobile hamburger */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -169,23 +166,19 @@
     transform-origin: center;
   }
 
-  .nav.scrolled .hamburger span {
-    background: var(--espresso);
-  }
+  .nav.scrolled .hamburger span { background: var(--espresso); }
 
   .hamburger.active span:nth-child(1) {
     transform: translateY(6.5px) rotate(45deg);
     background: var(--espresso);
   }
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
   .hamburger.active span:nth-child(3) {
     transform: translateY(-6.5px) rotate(-45deg);
     background: var(--espresso);
   }
 
-  /* ===== MOBILE MENU (FULL PAGE) ===== */
+  /* ===== MOBILE MENU ===== */
   .mobile-menu {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -199,10 +192,7 @@
     overflow-y: auto;
   }
 
-  .mobile-menu.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .mobile-menu.active { opacity: 1; pointer-events: auto; }
 
   .mobile-menu-content {
     flex: 1;
@@ -329,9 +319,7 @@
     transition: color 0.3s;
   }
 
-  .mobile-menu-socials a:hover {
-    color: var(--amber);
-  }
+  .mobile-menu-socials a:hover { color: var(--amber); }
 
   .mobile-menu-copyright {
     font-size: 10px;
@@ -339,7 +327,7 @@
     letter-spacing: 1px;
   }
 
-  /* ===== HERO SECTION ===== */
+  /* ===== HERO ===== */
   .hero {
     position: relative;
     height: 100vh;
@@ -352,11 +340,7 @@
     background: var(--espresso);
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
+  .hero-bg { position: absolute; inset: 0; z-index: 1; }
 
   .hero-bg img {
     width: 100%;
@@ -377,13 +361,7 @@
     position: absolute;
     inset: 0;
     z-index: 2;
-    background:
-      linear-gradient(180deg,
-        rgba(42, 31, 24, 0.5) 0%,
-        rgba(42, 31, 24, 0.2) 40%,
-        rgba(42, 31, 24, 0.3) 70%,
-        rgba(42, 31, 24, 0.85) 100%
-      );
+    background: linear-gradient(180deg, rgba(42, 31, 24, 0.5) 0%, rgba(42, 31, 24, 0.2) 40%, rgba(42, 31, 24, 0.3) 70%, rgba(42, 31, 24, 0.85) 100%);
   }
 
   .hero-content {
@@ -407,8 +385,7 @@
     animation: fadeUp 1s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .hero-eyebrow::before,
-  .hero-eyebrow::after {
+  .hero-eyebrow::before, .hero-eyebrow::after {
     content: '';
     width: 40px;
     height: 1px;
@@ -479,12 +456,7 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   }
 
-  .hero-cta svg {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.4s;
-  }
-
+  .hero-cta svg { width: 16px; height: 16px; transition: transform 0.4s; }
   .hero-cta:hover svg { transform: translateX(4px); }
 
   .hero-sublink {
@@ -500,10 +472,7 @@
     animation: fadeUp 1.2s 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  .hero-sublink:hover {
-    opacity: 1;
-    color: var(--ivory);
-  }
+  .hero-sublink:hover { opacity: 1; color: var(--ivory); }
 
   .hero-features {
     position: absolute;
@@ -526,12 +495,7 @@
   .hero-feature:last-child { border-right: none; }
   .hero-feature:hover { background: rgba(196, 165, 116, 0.06); }
 
-  .hero-feature-icon {
-    font-size: 14px;
-    color: var(--amber);
-    margin-bottom: 8px;
-    letter-spacing: 2px;
-  }
+  .hero-feature-icon { font-size: 14px; color: var(--amber); margin-bottom: 8px; letter-spacing: 2px; }
 
   .hero-feature-title {
     font-family: 'Playfair Display', serif;
@@ -595,7 +559,6 @@
   }
 
   .vs-container { max-width: 1400px; margin: 0 auto; }
-
   .vs-header { text-align: center; margin-bottom: 50px; }
 
   .vs-badge {
@@ -635,11 +598,7 @@
     margin-bottom: 16px;
   }
 
-  .vs-title .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--taupe);
-  }
+  .vs-title .italic { font-style: italic; font-weight: 400; color: var(--taupe); }
 
   .vs-subtitle {
     font-size: 15px;
@@ -664,11 +623,7 @@
     border-radius: 4px;
   }
 
-  .vs-main-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .vs-main-video video { width: 100%; height: 100%; object-fit: cover; }
 
   .vs-main-video-overlay {
     position: absolute;
@@ -695,15 +650,16 @@
   .vs-side-stack {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
   }
 
   .vs-side-card {
     position: relative;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     overflow: hidden;
     border-radius: 4px;
     cursor: pointer;
+    flex: 1;
   }
 
   .vs-side-card img {
@@ -722,7 +678,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 16px 20px;
     opacity: 0;
     transition: opacity 0.4s;
   }
@@ -731,13 +687,13 @@
 
   .vs-side-card-title {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--ivory);
     margin-bottom: 4px;
   }
 
   .vs-side-card-sub {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--amber);
@@ -800,12 +756,8 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ===== JOURNAL ENTRIES ===== */
-  .section {
-    padding: 120px 60px;
-    background: var(--sand);
-  }
-
+  /* ===== JOURNAL ===== */
+  .section { padding: 120px 60px; background: var(--sand); }
   .section-header { text-align: center; margin-bottom: 80px; }
 
   .section-eyebrow {
@@ -824,11 +776,7 @@
     margin-bottom: 12px;
   }
 
-  .section-title .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--taupe);
-  }
+  .section-title .italic { font-style: italic; font-weight: 400; color: var(--taupe); }
 
   .section-subtitle {
     font-size: 15px;
@@ -919,17 +867,10 @@
     transition: color 0.3s, gap 0.3s;
   }
 
-  .journal-card-link:hover {
-    color: var(--gold);
-    gap: 14px;
-  }
+  .journal-card-link:hover { color: var(--gold); gap: 14px; }
 
   /* ===== LOOKBOOK ===== */
-  .lookbook-section {
-    background: var(--espresso);
-    padding: 120px 60px;
-  }
-
+  .lookbook-section { background: var(--espresso); padding: 120px 60px; }
   .lookbook-section .section-eyebrow { color: var(--amber); }
   .lookbook-section .section-title { color: var(--ivory); }
   .lookbook-section .section-title .italic { color: var(--warm-gray); }
@@ -994,12 +935,7 @@
   }
 
   /* ===== FORECAST ===== */
-  .forecast-section {
-    padding: 120px 60px;
-    background: var(--mocha);
-    color: var(--ivory);
-  }
-
+  .forecast-section { padding: 120px 60px; background: var(--mocha); color: var(--ivory); }
   .forecast-section .section-eyebrow { color: var(--amber); }
   .forecast-section .section-title { color: var(--ivory); }
   .forecast-section .section-title .italic { color: var(--warm-gray); }
@@ -1023,11 +959,7 @@
     margin-bottom: 24px;
   }
 
-  .forecast-text h3 .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--amber);
-  }
+  .forecast-text h3 .italic { font-style: italic; font-weight: 400; color: var(--amber); }
 
   .forecast-text p {
     font-size: 15px;
@@ -1050,10 +982,7 @@
     transition: all 0.4s;
   }
 
-  .forecast-btn:hover {
-    background: var(--ivory);
-    color: var(--espresso);
-  }
+  .forecast-btn:hover { background: var(--ivory); color: var(--espresso); }
 
   .forecast-images {
     display: grid;
@@ -1070,10 +999,7 @@
 
   .forecast-images img:hover { transform: scale(1.03); }
 
-  .forecast-images img:first-child {
-    grid-column: span 2;
-    height: 300px;
-  }
+  .forecast-images img:first-child { grid-column: span 2; height: 300px; }
 
   /* ===== PHILOSOPHY ===== */
   .philosophy-section {
@@ -1102,11 +1028,7 @@
     line-height: 1.3;
   }
 
-  .philosophy-title .italic {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--taupe);
-  }
+  .philosophy-title .italic { font-style: italic; font-weight: 400; color: var(--taupe); }
 
   .philosophy-desc {
     font-size: 15px;
@@ -1218,10 +1140,7 @@
     color: var(--ivory);
   }
 
-  .editorial-quote-content {
-    position: relative;
-    padding: 20px 0;
-  }
+  .editorial-quote-content { position: relative; padding: 20px 0; }
 
   .editorial-quote-eyebrow {
     display: inline-block;
@@ -1256,30 +1175,13 @@
     z-index: 1;
   }
 
-  .editorial-quote-text em {
-    font-style: italic;
-    color: var(--amber);
-    font-weight: 400;
-  }
+  .editorial-quote-text em { font-style: italic; color: var(--amber); font-weight: 400; }
 
-  .editorial-quote-author {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
+  .editorial-quote-author { display: flex; align-items: center; gap: 24px; }
 
-  .author-line {
-    width: 50px;
-    height: 1px;
-    background: var(--amber);
-    opacity: 0.5;
-  }
+  .author-line { width: 50px; height: 1px; background: var(--amber); opacity: 0.5; }
 
-  .author-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+  .author-info { display: flex; flex-direction: column; gap: 4px; }
 
   .author-name {
     font-family: 'Playfair Display', serif;
@@ -1307,8 +1209,8 @@
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr 1.3fr;
+    gap: 40px;
     padding-bottom: 60px;
     border-bottom: 1px solid rgba(196, 165, 116, 0.12);
   }
@@ -1320,11 +1222,7 @@
     margin-bottom: 16px;
   }
 
-  .footer-brand span {
-    font-weight: 400;
-    font-style: italic;
-    color: var(--warm-gray);
-  }
+  .footer-brand span { font-weight: 400; font-style: italic; color: var(--warm-gray); }
 
   .footer-brand-desc {
     font-size: 13px;
@@ -1352,6 +1250,45 @@
   }
 
   .footer-col a:hover { color: var(--ivory); }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .footer-contact-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--amber);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .footer-contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .footer-contact-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    opacity: 0.7;
+  }
+
+  .footer-contact-value {
+    font-size: 13px;
+    color: var(--ivory);
+    text-decoration: none;
+    transition: color 0.3s;
+    line-height: 1.4;
+  }
+
+  .footer-contact-value:hover { color: var(--amber); }
 
   .footer-newsletter p {
     font-size: 13px;
@@ -1482,12 +1419,7 @@
     transform: scale(1.08);
   }
 
-  .chat-toggle svg {
-    width: 26px;
-    height: 26px;
-    transition: transform 0.4s;
-  }
-
+  .chat-toggle svg { width: 26px; height: 26px; transition: transform 0.4s; }
   .chat-toggle.open svg { transform: rotate(90deg) scale(0.9); }
 
   .chat-toggle-pulse {
@@ -1810,75 +1742,37 @@
   </button>
 </nav>
 
-<!-- Mobile Menu (Full Page with Real Links) -->
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-content">
-    
-    <!-- Group 1: Main Navigation -->
     <div class="mobile-menu-group">
       <div class="mobile-menu-group-label">Explore</div>
       <div class="mobile-menu-links">
-        <a href="https://www.vogue.com/fashion" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Articles & News
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.vogue.com/fashion-shows" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Lookbook Archives
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.wgsn.com/en/products/fashion-design" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Trend Forecast
-          <span class="arrow">→</span>
-        </a>
+        <a href="https://www.vogue.com/fashion" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Articles & News<span class="arrow">→</span></a>
+        <a href="https://www.vogue.com/fashion-shows" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Lookbook Archives<span class="arrow">→</span></a>
+        <a href="https://www.wgsn.com/en/products/fashion-design" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Trend Forecast<span class="arrow">→</span></a>
       </div>
     </div>
-
-    <!-- Group 2: Editions -->
     <div class="mobile-menu-group">
       <div class="mobile-menu-group-label">Fashion Weeks</div>
       <div class="mobile-menu-links">
-        <a href="https://www.fhcm.paris/en/paris-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Paris
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.vogue.com/tag/event/milan-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Milan
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.vogue.co.uk/tags/street-chic" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          London
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.vogue.com/tag/event/new-york-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          New York
-          <span class="arrow">→</span>
-        </a>
+        <a href="https://www.fhcm.paris/en/paris-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Paris<span class="arrow">→</span></a>
+        <a href="https://www.vogue.com/tag/event/milan-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Milan<span class="arrow">→</span></a>
+        <a href="https://www.vogue.co.uk/tags/street-chic" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">London<span class="arrow">→</span></a>
+        <a href="https://www.vogue.com/tag/event/new-york-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">New York<span class="arrow">→</span></a>
       </div>
     </div>
-
-    <!-- Group 3: About & Contact -->
     <div class="mobile-menu-group">
       <div class="mobile-menu-group-label">About</div>
       <div class="mobile-menu-links">
-        <a href="https://www.businessoffashion.com/" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
-          Brand Story
-          <span class="arrow">→</span>
-        </a>
-        <a href="#contact" class="mobile-menu-link mobile-link">
-          Contact Editors
-          <span class="arrow">→</span>
-        </a>
+        <a href="https://www.businessoffashion.com/" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">Brand Story<span class="arrow">→</span></a>
+        <a href="#contact" class="mobile-menu-link mobile-link">Contact Editors<span class="arrow">→</span></a>
       </div>
     </div>
-
-    <!-- CTA Button -->
     <div class="mobile-menu-group" style="text-align:center;">
       <a href="#contact" class="mobile-menu-cta mobile-link">Subscribe to Newsletter</a>
     </div>
-
   </div>
-
-  <!-- Mobile Menu Footer -->
   <div class="mobile-menu-footer">
     <div class="mobile-menu-socials">
       <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
@@ -1895,28 +1789,23 @@
     <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/235e732cc8d3e31e08de014b027270da_468993e9-0fdd-4dee-a5b3-259d6025216c.jpg?v=1792229445" alt="Fashion Editorial">
   </div>
   <div class="hero-overlay"></div>
-
   <div class="hero-content">
     <div class="hero-eyebrow">Est. 2026 — Independent Fashion Journal</div>
     <h1 class="hero-title">Fashion<span class="italic">Edition</span></h1>
     <p class="hero-subtitle-line">The Art of Modern Style & Editorial Vision</p>
     <p class="hero-desc">Curated trend reporting, runway commentary, and high-fashion visual narratives for the modern style authority.</p>
-    
     <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="hero-cta">
       Explore Journal
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-
     <div>
       <a href="#articles" class="hero-sublink">or scroll down to read latest articles ↓</a>
     </div>
   </div>
-
   <div class="scroll-indicator">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
-
   <div class="hero-features">
     <div class="hero-feature">
       <div class="hero-feature-icon">✦</div>
@@ -1977,6 +1866,13 @@
           <div class="vs-side-card-overlay">
             <div class="vs-side-card-title">Behind the Scenes</div>
             <div class="vs-side-card-sub">Exclusive Access</div>
+          </div>
+        </div>
+        <div class="vs-side-card">
+          <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/2c1424d4-ed77-4be3-b380-a2766116cbc8.avif?v=1792606139" alt="VS Runway Moment">
+          <div class="vs-side-card-overlay">
+            <div class="vs-side-card-title">Angelic Moments</div>
+            <div class="vs-side-card-sub">The Return of the Wings</div>
           </div>
         </div>
       </div>
@@ -2132,7 +2028,6 @@
         <span class="caption-title">The Quiet Revolution</span>
       </div>
     </div>
-
     <div class="editorial-quote-content">
       <span class="editorial-quote-eyebrow">✦ From the Editor's Desk</span>
       <div class="editorial-quote-mark">"</div>
@@ -2173,6 +2068,30 @@
       <a href="https://www.vogue.com/tag/event/milan-fashion-week" target="_blank" rel="noopener">Milan Haute Couture</a>
       <a href="https://www.vogue.co.uk/tags/street-chic" target="_blank" rel="noopener">London Street Style</a>
       <a href="https://www.vogue.com/tag/event/new-york-fashion-week" target="_blank" rel="noopener">New York Runway</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div class="footer-contact-content">
+          <span class="footer-contact-label">Editorial Desk</span>
+          <a href="mailto:fashionedition@gmail.com" class="footer-contact-value">fashionedition@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="footer-contact-content">
+          <span class="footer-contact-label">Press Line</span>
+          <a href="tel:+12125550147" class="footer-contact-value">+1 (212) 555-0147</a>
+        </div>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="footer-contact-content">
+          <span class="footer-contact-label">Studio</span>
+          <span class="footer-contact-value">New York, NY 10013</span>
+        </div>
+      </div>
     </div>
     <div class="footer-newsletter">
       <h4 style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;font-weight:500;">Editorial Dispatch</h4>
@@ -2233,7 +2152,6 @@
 </div>
 
 <script>
-  // Navbar scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
@@ -2243,7 +2161,6 @@
     }
   });
 
-  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -2253,11 +2170,9 @@
     document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
   });
 
-  // Close mobile menu on link click (only for internal links)
   document.querySelectorAll('.mobile-menu-link').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
-      // Only close menu for internal anchor links, not external ones
       if (href && href.startsWith('#')) {
         hamburger.classList.remove('active');
         mobileMenu.classList.remove('active');
@@ -2266,7 +2181,6 @@
     });
   });
 
-  // Intersection Observer
   const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2288,7 +2202,6 @@
     card.style.transitionDelay = `${index * 0.15}s`;
   });
 
-  // Chat Widget
   const chatToggle = document.getElementById('chatToggle');
   const chatWindow = document.getElementById('chatWindow');
   const chatClose = document.getElementById('chatClose');
@@ -2305,7 +2218,7 @@
     trends: "For 2027, we're seeing a strong return to tactile luxury — deep mocha hues, soft structured shoulders, and sustainable cashmeres are leading the conversation. Would you like to explore our full forecast report?",
     lookbook: "Our latest seasonal lookbooks feature four curated editorials: The Capsule Suit, Tactile Knits, Urban Elegance, and Midnight Bronze. You can view them in the Lookbooks section above ✦",
     subscribe: "You can subscribe to our weekly Editorial Dispatch newsletter right here on the page — just scroll to the footer and enter your email. We send curated trend reports every Thursday.",
-    contact: "Our editorial desk is available at editors@fashionedition.com, or you can reach our Paris studio at +33 1 42 60 40 20. We typically respond within 48 hours.",
+    contact: "Our editorial desk is available at fashionedition@gmail.com, or you can reach our New York studio at +1 (212) 555-0147. We typically respond within 48 hours.",
     default: "Thank you for your question! Our editorial team will review this and respond shortly. In the meantime, feel free to explore our latest articles, lookbooks, or 2027 trend forecast ✦"
   };
 
@@ -2395,7 +2308,7 @@
       response = chatResponses.lookbook;
     } else if (lowerText.includes('subscri') || lowerText.includes('newsletter') || lowerText.includes('join')) {
       response = chatResponses.subscribe;
-    } else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('reach') || lowerText.includes('editor')) {
+    } else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('reach') || lowerText.includes('editor') || lowerText.includes('phone')) {
       response = chatResponses.contact;
     } else if (lowerText.includes('hi') || lowerText.includes('hello') || lowerText.includes('hey')) {
       response = "Hello and welcome to FashionEdition ✦ How can I assist you with our editorial content today?";
