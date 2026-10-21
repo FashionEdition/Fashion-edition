@@ -23,13 +23,14 @@
     --warm-gray: #a89a8a;
     --soft-brown: #6b5744;
     --gold: #b8956a;
+    --sand: #e8dfd3;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--ivory);
+    background: var(--cream);
     color: var(--mocha);
     overflow-x: hidden;
     font-weight: 300;
@@ -49,27 +50,38 @@
   }
 
   .nav.scrolled {
-    background: rgba(250, 247, 242, 0.92);
+    background: rgba(245, 240, 234, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(61, 46, 36, 0.08);
+    border-bottom: 1px solid rgba(61, 46, 36, 0.12);
     height: 70px;
+  }
+
+  .nav.scrolled .nav-logo,
+  .nav.scrolled .nav-links a {
+    color: var(--espresso);
   }
 
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--espresso);
+    color: var(--ivory);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 6px;
+    z-index: 1001;
+    transition: color 0.5s;
   }
 
   .nav-logo span {
     font-weight: 400;
     font-style: italic;
+    color: var(--amber);
+  }
+
+  .nav.scrolled .nav-logo span {
     color: var(--taupe);
   }
 
@@ -85,7 +97,7 @@
     letter-spacing: 2.5px;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--mocha);
+    color: var(--ivory);
     font-weight: 400;
     position: relative;
     padding: 4px 0;
@@ -102,24 +114,229 @@
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover { color: var(--amber); }
   .nav-links a:hover::after { width: 100%; }
+  .nav.scrolled .nav-links a:hover { color: var(--gold); }
 
   .nav-subscribe {
     font-size: 11px;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--ivory);
-    background: var(--mocha);
-    padding: 10px 28px;
+    color: var(--espresso);
+    background: var(--amber);
+    padding: 12px 30px;
     transition: all 0.4s;
-    font-weight: 400;
+    font-weight: 500;
+    z-index: 1001;
+    border: 1px solid var(--amber);
   }
 
   .nav-subscribe:hover {
+    background: transparent;
+    color: var(--amber);
+  }
+
+  .nav.scrolled .nav-subscribe {
+    background: var(--mocha);
+    color: var(--ivory);
+    border-color: var(--mocha);
+  }
+
+  .nav.scrolled .nav-subscribe:hover {
     background: var(--gold);
     color: var(--espresso);
+    border-color: var(--gold);
+  }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+  }
+
+  .hamburger span {
+    width: 26px;
+    height: 1.5px;
+    background: var(--ivory);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  .nav.scrolled .hamburger span {
+    background: var(--espresso);
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+    background: var(--espresso);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+    background: var(--espresso);
+  }
+
+  /* ===== MOBILE MENU (FULL PAGE) ===== */
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--espresso);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 40px 60px;
+    gap: 10px;
+  }
+
+  .mobile-menu-group {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu.active .mobile-menu-group {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu.active .mobile-menu-group:nth-child(1) { transition-delay: 0.1s; }
+  .mobile-menu.active .mobile-menu-group:nth-child(2) { transition-delay: 0.2s; }
+  .mobile-menu.active .mobile-menu-group:nth-child(3) { transition-delay: 0.3s; }
+  .mobile-menu.active .mobile-menu-group:nth-child(4) { transition-delay: 0.4s; }
+
+  .mobile-menu-group-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-menu-group-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobile-menu-link {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--ivory);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 12px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(196, 165, 116, 0.08);
+    transition: all 0.3s;
+  }
+
+  .mobile-menu-link:hover {
+    color: var(--amber);
+    padding-left: 16px;
+  }
+
+  .mobile-menu-link .arrow {
+    font-size: 14px;
+    opacity: 0.5;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-menu-link:hover .arrow {
+    transform: translateX(6px);
+    opacity: 1;
+  }
+
+  .mobile-menu-cta {
+    margin-top: 20px;
+    padding: 18px 50px;
+    background: var(--amber);
+    color: var(--espresso);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s;
+    border: 1px solid var(--amber);
+  }
+
+  .mobile-menu-cta:hover {
+    background: transparent;
+    color: var(--amber);
+  }
+
+  .mobile-menu-footer {
+    padding: 30px 40px;
+    border-top: 1px solid rgba(196, 165, 116, 0.1);
+    text-align: center;
+  }
+
+  .mobile-menu-socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 16px;
+  }
+
+  .mobile-menu-socials a {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu-socials a:hover {
+    color: var(--amber);
+  }
+
+  .mobile-menu-copyright {
+    font-size: 10px;
+    color: rgba(168, 154, 138, 0.5);
+    letter-spacing: 1px;
   }
 
   /* ===== HERO SECTION ===== */
@@ -288,7 +505,6 @@
     color: var(--ivory);
   }
 
-  /* Hero Features Strip */
   .hero-features {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -332,7 +548,6 @@
     color: var(--warm-gray);
   }
 
-  /* Hero scroll indicator */
   .scroll-indicator {
     position: absolute;
     bottom: 130px;
@@ -371,23 +586,17 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===== VICTORIA'S SECRET 2026 SECTION (MOVED UP) ===== */
+  /* ===== VICTORIA'S SECRET 2026 ===== */
   .vs-section {
     padding: 100px 60px;
-    background: var(--ivory);
+    background: var(--sand);
     position: relative;
-    border-bottom: 1px solid rgba(61, 46, 36, 0.05);
+    border-bottom: 1px solid rgba(61, 46, 36, 0.08);
   }
 
-  .vs-container {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  .vs-container { max-width: 1400px; margin: 0 auto; }
 
-  .vs-header {
-    text-align: center;
-    margin-bottom: 50px;
-  }
+  .vs-header { text-align: center; margin-bottom: 50px; }
 
   .vs-badge {
     display: inline-flex;
@@ -434,7 +643,7 @@
 
   .vs-subtitle {
     font-size: 15px;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -504,9 +713,7 @@
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .vs-side-card:hover img {
-    transform: scale(1.05);
-  }
+  .vs-side-card:hover img { transform: scale(1.05); }
 
   .vs-side-card-overlay {
     position: absolute;
@@ -520,9 +727,7 @@
     transition: opacity 0.4s;
   }
 
-  .vs-side-card:hover .vs-side-card-overlay {
-    opacity: 1;
-  }
+  .vs-side-card:hover .vs-side-card-overlay { opacity: 1; }
 
   .vs-side-card-title {
     font-family: 'Playfair Display', serif;
@@ -542,7 +747,7 @@
     text-align: center;
     margin-top: 30px;
     font-size: 12px;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     font-style: italic;
   }
 
@@ -553,9 +758,7 @@
     transition: color 0.3s;
   }
 
-  .vs-footer-note a:hover {
-    color: var(--gold);
-  }
+  .vs-footer-note a:hover { color: var(--gold); }
 
   /* ===== MARQUEE ===== */
   .marquee-section {
@@ -600,12 +803,10 @@
   /* ===== JOURNAL ENTRIES ===== */
   .section {
     padding: 120px 60px;
+    background: var(--sand);
   }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 80px;
-  }
+  .section-header { text-align: center; margin-bottom: 80px; }
 
   .section-eyebrow {
     font-size: 11px;
@@ -631,7 +832,7 @@
 
   .section-subtitle {
     font-size: 15px;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     letter-spacing: 0.3px;
   }
 
@@ -664,9 +865,7 @@
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .journal-card:hover .journal-card-img img {
-    transform: scale(1.06);
-  }
+  .journal-card:hover .journal-card-img img { transform: scale(1.06); }
 
   .journal-card-tag {
     position: absolute;
@@ -685,7 +884,7 @@
     font-size: 11px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     margin-bottom: 10px;
   }
 
@@ -704,7 +903,7 @@
   .journal-card-desc {
     font-size: 14px;
     line-height: 1.7;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     margin-bottom: 20px;
   }
 
@@ -797,8 +996,14 @@
   /* ===== FORECAST ===== */
   .forecast-section {
     padding: 120px 60px;
-    background: var(--cream);
+    background: var(--mocha);
+    color: var(--ivory);
   }
+
+  .forecast-section .section-eyebrow { color: var(--amber); }
+  .forecast-section .section-title { color: var(--ivory); }
+  .forecast-section .section-title .italic { color: var(--warm-gray); }
+  .forecast-section .section-subtitle { color: rgba(245, 240, 234, 0.5); }
 
   .forecast-content {
     max-width: 1300px;
@@ -813,7 +1018,7 @@
     font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 3.5vw, 44px);
     font-weight: 700;
-    color: var(--espresso);
+    color: var(--ivory);
     line-height: 1.2;
     margin-bottom: 24px;
   }
@@ -821,7 +1026,7 @@
   .forecast-text h3 .italic {
     font-style: italic;
     font-weight: 400;
-    color: var(--taupe);
+    color: var(--amber);
   }
 
   .forecast-text p {
@@ -839,14 +1044,14 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--ivory);
-    background: var(--mocha);
+    color: var(--espresso);
+    background: var(--amber);
     padding: 18px 40px;
     transition: all 0.4s;
   }
 
   .forecast-btn:hover {
-    background: var(--gold);
+    background: var(--ivory);
     color: var(--espresso);
   }
 
@@ -874,15 +1079,16 @@
   .philosophy-section {
     padding: 140px 60px;
     text-align: center;
-    background: var(--ivory);
+    background: var(--sand);
     position: relative;
+    color: var(--espresso);
   }
 
   .philosophy-section::before {
     content: '✦';
     display: block;
     font-size: 20px;
-    color: var(--amber);
+    color: var(--gold);
     margin-bottom: 40px;
   }
 
@@ -905,7 +1111,7 @@
   .philosophy-desc {
     font-size: 15px;
     line-height: 1.9;
-    color: var(--warm-gray);
+    color: var(--soft-brown);
     max-width: 600px;
     margin: 0 auto 20px;
   }
@@ -918,7 +1124,8 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--mocha);
+    color: var(--ivory);
+    background: var(--mocha);
     border: 1px solid var(--mocha);
     padding: 16px 36px;
     margin-top: 24px;
@@ -926,11 +1133,12 @@
   }
 
   .philosophy-btn:hover {
-    background: var(--mocha);
-    color: var(--ivory);
+    background: var(--gold);
+    color: var(--espresso);
+    border-color: var(--gold);
   }
 
-  /* ===== EDITORIAL QUOTE (VIDEO) SECTION ===== */
+  /* ===== EDITORIAL QUOTE ===== */
   .editorial-quote-section {
     padding: 140px 60px;
     background: var(--espresso);
@@ -959,7 +1167,6 @@
     align-items: center;
   }
 
-  /* Video side */
   .editorial-quote-photo {
     position: relative;
     aspect-ratio: 3/4;
@@ -975,9 +1182,7 @@
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .editorial-quote-photo:hover video {
-    transform: scale(1.04);
-  }
+  .editorial-quote-photo:hover video { transform: scale(1.04); }
 
   .editorial-quote-photo::after {
     content: '';
@@ -1013,7 +1218,6 @@
     color: var(--ivory);
   }
 
-  /* Quote side */
   .editorial-quote-content {
     position: relative;
     padding: 20px 0;
@@ -1156,10 +1360,7 @@
     margin-bottom: 20px;
   }
 
-  .footer-newsletter-form {
-    display: flex;
-    gap: 0;
-  }
+  .footer-newsletter-form { display: flex; gap: 0; }
 
   .footer-newsletter-form input {
     flex: 1;
@@ -1215,11 +1416,11 @@
   }
 
   .chat-tooltip {
-    background: var(--ivory);
-    color: var(--espresso);
+    background: var(--espresso);
+    color: var(--ivory);
     padding: 14px 20px;
     border-radius: 14px 14px 4px 14px;
-    box-shadow: 0 12px 40px rgba(42, 31, 24, 0.25);
+    box-shadow: 0 12px 40px rgba(42, 31, 24, 0.4);
     font-size: 13px;
     line-height: 1.5;
     max-width: 240px;
@@ -1228,6 +1429,7 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     font-weight: 400;
+    border: 1px solid rgba(196, 165, 116, 0.2);
   }
 
   .chat-tooltip.show {
@@ -1242,7 +1444,7 @@
     font-weight: 700;
     display: block;
     margin-bottom: 4px;
-    color: var(--espresso);
+    color: var(--amber);
   }
 
   .chat-tooltip-close {
@@ -1268,8 +1470,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--ivory);
-    box-shadow: 0 10px 30px rgba(42, 31, 24, 0.35);
+    color: var(--amber);
+    box-shadow: 0 10px 30px rgba(42, 31, 24, 0.4);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
@@ -1278,7 +1480,6 @@
     background: var(--gold);
     color: var(--espresso);
     transform: scale(1.08);
-    box-shadow: 0 14px 40px rgba(184, 149, 106, 0.4);
   }
 
   .chat-toggle svg {
@@ -1287,9 +1488,7 @@
     transition: transform 0.4s;
   }
 
-  .chat-toggle.open svg {
-    transform: rotate(90deg) scale(0.9);
-  }
+  .chat-toggle.open svg { transform: rotate(90deg) scale(0.9); }
 
   .chat-toggle-pulse {
     position: absolute;
@@ -1313,9 +1512,9 @@
     max-width: calc(100vw - 40px);
     height: 560px;
     max-height: calc(100vh - 140px);
-    background: var(--ivory);
+    background: var(--espresso);
     border-radius: 20px;
-    box-shadow: 0 25px 80px rgba(42, 31, 24, 0.3);
+    box-shadow: 0 25px 80px rgba(42, 31, 24, 0.5);
     z-index: 1500;
     display: flex;
     flex-direction: column;
@@ -1324,6 +1523,7 @@
     transform: translateY(20px) scale(0.95);
     pointer-events: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(196, 165, 116, 0.2);
   }
 
   .chat-window.open {
@@ -1333,12 +1533,13 @@
   }
 
   .chat-header {
-    background: var(--espresso);
+    background: var(--mocha);
     padding: 22px 24px;
     display: flex;
     align-items: center;
     gap: 14px;
     flex-shrink: 0;
+    border-bottom: 1px solid rgba(196, 165, 116, 0.15);
   }
 
   .chat-avatar {
@@ -1365,14 +1566,11 @@
     width: 10px;
     height: 10px;
     background: #6ec47a;
-    border: 2px solid var(--espresso);
+    border: 2px solid var(--mocha);
     border-radius: 50%;
   }
 
-  .chat-header-info {
-    flex: 1;
-    color: var(--ivory);
-  }
+  .chat-header-info { flex: 1; color: var(--ivory); }
 
   .chat-header-name {
     font-family: 'Playfair Display', serif;
@@ -1408,12 +1606,12 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
-    background: var(--cream);
+    background: var(--espresso);
   }
 
   .chat-messages::-webkit-scrollbar { width: 4px; }
   .chat-messages::-webkit-scrollbar-track { background: transparent; }
-  .chat-messages::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--taupe); border-radius: 2px; }
 
   .chat-msg {
     max-width: 82%;
@@ -1430,16 +1628,16 @@
   }
 
   .chat-msg.bot {
-    background: var(--ivory);
-    color: var(--mocha);
+    background: var(--mocha);
+    color: var(--ivory);
     border-bottom-left-radius: 4px;
     align-self: flex-start;
-    box-shadow: 0 2px 8px rgba(42, 31, 24, 0.06);
+    border: 1px solid rgba(196, 165, 116, 0.15);
   }
 
   .chat-msg.user {
-    background: var(--mocha);
-    color: var(--ivory);
+    background: var(--amber);
+    color: var(--espresso);
     border-bottom-right-radius: 4px;
     align-self: flex-end;
   }
@@ -1448,33 +1646,33 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 0 20px 14px;
-    background: var(--cream);
+    padding: 14px 20px;
+    background: var(--espresso);
+    border-top: 1px solid rgba(196, 165, 116, 0.1);
   }
 
   .chat-quick-btn {
-    background: var(--ivory);
-    border: 1px solid rgba(184, 149, 106, 0.3);
-    color: var(--mocha);
+    background: transparent;
+    border: 1px solid rgba(196, 165, 116, 0.3);
+    color: var(--ivory);
     padding: 8px 14px;
     border-radius: 20px;
     font-size: 11px;
     font-family: 'Inter', sans-serif;
     cursor: pointer;
     transition: all 0.3s;
-    letter-spacing: 0.3px;
   }
 
   .chat-quick-btn:hover {
-    background: var(--mocha);
-    color: var(--ivory);
-    border-color: var(--mocha);
+    background: var(--amber);
+    color: var(--espresso);
+    border-color: var(--amber);
   }
 
   .chat-input-area {
     padding: 14px 16px;
-    background: var(--ivory);
-    border-top: 1px solid rgba(61, 46, 36, 0.08);
+    background: var(--mocha);
+    border-top: 1px solid rgba(196, 165, 116, 0.15);
     display: flex;
     gap: 10px;
     align-items: center;
@@ -1483,27 +1681,27 @@
 
   .chat-input {
     flex: 1;
-    background: var(--cream);
-    border: 1px solid rgba(61, 46, 36, 0.08);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(196, 165, 116, 0.2);
     border-radius: 24px;
     padding: 11px 18px;
     font-size: 13px;
     font-family: 'Inter', sans-serif;
-    color: var(--espresso);
+    color: var(--ivory);
     outline: none;
     transition: border-color 0.3s;
   }
 
   .chat-input::placeholder { color: var(--warm-gray); }
-  .chat-input:focus { border-color: var(--gold); }
+  .chat-input:focus { border-color: var(--amber); }
 
   .chat-send {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--mocha);
+    background: var(--amber);
     border: none;
-    color: var(--ivory);
+    color: var(--espresso);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1512,32 +1710,25 @@
     flex-shrink: 0;
   }
 
-  .chat-send:hover {
-    background: var(--gold);
-    color: var(--espresso);
-  }
-
-  .chat-send svg {
-    width: 16px;
-    height: 16px;
-  }
+  .chat-send:hover { background: var(--gold); }
+  .chat-send svg { width: 16px; height: 16px; }
 
   .chat-typing {
     display: flex;
     gap: 4px;
     padding: 12px 16px;
-    background: var(--ivory);
+    background: var(--mocha);
     border-radius: 16px;
     border-bottom-left-radius: 4px;
     align-self: flex-start;
     max-width: 80px;
-    box-shadow: 0 2px 8px rgba(42, 31, 24, 0.06);
+    border: 1px solid rgba(196, 165, 116, 0.15);
   }
 
   .chat-typing span {
     width: 7px;
     height: 7px;
-    background: var(--warm-gray);
+    background: var(--amber);
     border-radius: 50%;
     animation: typingDot 1.4s ease-in-out infinite;
   }
@@ -1563,22 +1754,16 @@
     .hero-features { flex-wrap: wrap; }
     .hero-feature { flex: 1 1 50%; }
     .editorial-quote-section { padding: 100px 30px; }
-    .editorial-quote-wrapper {
-      grid-template-columns: 1fr;
-      gap: 50px;
-    }
-    .editorial-quote-photo {
-      max-width: 500px;
-      margin: 0 auto;
-    }
+    .editorial-quote-wrapper { grid-template-columns: 1fr; gap: 50px; }
+    .editorial-quote-photo { max-width: 500px; margin: 0 auto; }
     .vs-section { padding: 80px 30px; }
-    .vs-grid {
-      grid-template-columns: 1fr;
-    }
+    .vs-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
     .nav-links { display: none; }
+    .nav-subscribe { display: none; }
+    .hamburger { display: flex; }
     .section { padding: 60px 20px; }
     .journal-grid { grid-template-columns: 1fr; }
     .lookbook-grid { grid-template-columns: 1fr 1fr; }
@@ -1592,20 +1777,16 @@
     .forecast-section { padding: 80px 20px; }
     .philosophy-section { padding: 80px 20px; }
     .editorial-quote-section { padding: 80px 20px; }
-    .editorial-quote-mark {
-      font-size: 90px;
-      top: 40px;
-      left: -5px;
-    }
-    .editorial-quote-text {
-      font-size: 22px;
-    }
+    .editorial-quote-mark { font-size: 90px; top: 40px; left: -5px; }
+    .editorial-quote-text { font-size: 22px; }
     .footer { padding: 60px 20px 30px; }
     .chat-launcher { bottom: 20px; right: 20px; }
     .chat-window { bottom: 95px; right: 20px; height: 520px; }
     .chat-toggle { width: 56px; height: 56px; }
     .vs-section { padding: 60px 20px; }
     .vs-main-video-title { font-size: 22px; }
+    .mobile-menu-link { font-size: 24px; }
+    .mobile-menu-content { padding: 90px 30px 40px; }
   }
 </style>
 </head>
@@ -1622,7 +1803,91 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-subscribe">Subscribe</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- Mobile Menu (Full Page with Real Links) -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-content">
+    
+    <!-- Group 1: Main Navigation -->
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-group-label">Explore</div>
+      <div class="mobile-menu-links">
+        <a href="https://www.vogue.com/fashion" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Articles & News
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://www.vogue.com/fashion-shows" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Lookbook Archives
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://www.wgsn.com/en/products/fashion-design" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Trend Forecast
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Group 2: Editions -->
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-group-label">Fashion Weeks</div>
+      <div class="mobile-menu-links">
+        <a href="https://www.fhcm.paris/en/paris-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Paris
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://www.vogue.com/tag/event/milan-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Milan
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://www.vogue.co.uk/tags/street-chic" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          London
+          <span class="arrow">→</span>
+        </a>
+        <a href="https://www.vogue.com/tag/event/new-york-fashion-week" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          New York
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Group 3: About & Contact -->
+    <div class="mobile-menu-group">
+      <div class="mobile-menu-group-label">About</div>
+      <div class="mobile-menu-links">
+        <a href="https://www.businessoffashion.com/" target="_blank" rel="noopener" class="mobile-menu-link mobile-link">
+          Brand Story
+          <span class="arrow">→</span>
+        </a>
+        <a href="#contact" class="mobile-menu-link mobile-link">
+          Contact Editors
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mobile-menu-group" style="text-align:center;">
+      <a href="#contact" class="mobile-menu-cta mobile-link">Subscribe to Newsletter</a>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu Footer -->
+  <div class="mobile-menu-footer">
+    <div class="mobile-menu-socials">
+      <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+      <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+    </div>
+    <div class="mobile-menu-copyright">© 2026 FashionEdition · All Rights Reserved</div>
+  </div>
+</div>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -1637,7 +1902,6 @@
     <p class="hero-subtitle-line">The Art of Modern Style & Editorial Vision</p>
     <p class="hero-desc">Curated trend reporting, runway commentary, and high-fashion visual narratives for the modern style authority.</p>
     
-    <!-- Hero Button -->
     <a href="https://runwaymagazineworldwide.com/editorial-positioning/" target="_blank" rel="noopener" class="hero-cta">
       Explore Journal
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1677,7 +1941,7 @@
   </div>
 </section>
 
-<!-- ===== VICTORIA'S SECRET 2026 SHOWCASE (MOVED UP) ===== -->
+<!-- Victoria's Secret 2026 -->
 <section class="vs-section">
   <div class="vs-container">
     <div class="vs-header">
@@ -1690,7 +1954,6 @@
     </div>
 
     <div class="vs-grid">
-      <!-- Main Video -->
       <div class="vs-main-video">
         <video autoplay muted loop playsinline>
           <source src="https://cdn.shopify.com/videos/c/o/v/0d628b02490c4bb4ad2f687266baece2.mov" type="video/mp4">
@@ -1701,7 +1964,6 @@
         </div>
       </div>
 
-      <!-- Side Images -->
       <div class="vs-side-stack">
         <div class="vs-side-card">
           <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/GettyImages-2300886561-99abcdc14f1e440f86e2e4f05d033f74.jpg?v=1792431355" alt="VS Runway Moment">
@@ -1843,9 +2105,9 @@
       </a>
     </div>
     <div class="forecast-images">
-      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/8d96359ae6ccf869a2d3ecccfbb7d000.jpg?v=1792229444" alt="Forecast 1">
-      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/premium_photo-1675186049419-d48f4b28fe7c.avif?v=1792229444" alt="Forecast 2">
-      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/IMG_0597.jpg?v=1792227650" alt="Forecast 3">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/349ba9efb8a822fa95647d507d43546d.jpg?v=1792604492" alt="Forecast 1">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/0bbe86f86451220581d4ad939c8a63e6.jpg?v=1792604492" alt="Forecast 2">
+      <img src="https://cdn.shopify.com/s/files/1/1012/0196/9437/files/b32eb8a236053d8853fa0420a7aa3ea5.jpg?v=1792604492" alt="Forecast 3">
     </div>
   </div>
 </section>
@@ -1858,15 +2120,12 @@
   <a href="#contact" class="philosophy-btn">Connect With Editors →</a>
 </section>
 
-<!-- ===== EDITORIAL QUOTE (VIDEO) SECTION ===== -->
+<!-- Editorial Quote -->
 <section class="editorial-quote-section">
   <div class="editorial-quote-wrapper">
-    
-    <!-- Left: Video -->
     <div class="editorial-quote-photo">
       <video autoplay muted loop playsinline>
         <source src="https://cdn.shopify.com/videos/c/o/v/2d9f20242f194621a2de6f3a0bf06591.mov" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       <div class="editorial-quote-photo-caption">
         <span class="caption-label">Issue N°17</span>
@@ -1874,7 +2133,6 @@
       </div>
     </div>
 
-    <!-- Right: Quote -->
     <div class="editorial-quote-content">
       <span class="editorial-quote-eyebrow">✦ From the Editor's Desk</span>
       <div class="editorial-quote-mark">"</div>
@@ -1892,7 +2150,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1940,7 +2197,7 @@
   </div>
   <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
     <span class="chat-toggle-pulse"></span>
-    <svg id="chatIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </svg>
   </button>
@@ -1986,7 +2243,30 @@
     }
   });
 
-  // Intersection Observer for scroll animations
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+  });
+
+  // Close mobile menu on link click (only for internal links)
+  document.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      // Only close menu for internal anchor links, not external ones
+      if (href && href.startsWith('#')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Intersection Observer
   const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2008,7 +2288,7 @@
     card.style.transitionDelay = `${index * 0.15}s`;
   });
 
-  // ===== CHAT WIDGET =====
+  // Chat Widget
   const chatToggle = document.getElementById('chatToggle');
   const chatWindow = document.getElementById('chatWindow');
   const chatClose = document.getElementById('chatClose');
